@@ -560,7 +560,7 @@
     </div>
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="#" class="active">Home</a></li>
       </ul>
     </nav>
     <div class="search-box">
@@ -644,33 +644,6 @@
   </footer>
 
   <script>
-    // Add active class to current page navigation item
-    document.addEventListener('DOMContentLoaded', function() {
-      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-      const navLinks = document.querySelectorAll('nav ul li a');
-      
-      navLinks.forEach(link => {
-        const linkPage = link.getAttribute('href');
-        if (currentPage === linkPage || 
-            (currentPage === '' && linkPage === '#') || 
-            (currentPage === 'index.html' && linkPage === '#')) {
-          link.classList.add('active');
-        } else {
-          link.classList.remove('active');
-        }
-      });
-
-      // Header scroll effect
-      window.addEventListener('scroll', function() {
-        const header = document.getElementById('main-header');
-        if (window.scrollY > 50) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      });
-    });
-
     function searchDocuments() {
       const searchQuery = document.getElementById('search-input').value.replace(/\s+/g, '').toLowerCase();
       const docSections = document.querySelectorAll('.docs-section');
@@ -698,6 +671,16 @@
         }
       });
     }
+
+    // Add scroll effect to header
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('main-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
   </script>
 </body>
 </html>

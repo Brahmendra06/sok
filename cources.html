@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Y23 COURSES</title>
+  <title>FSAD Materials</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
   <style>
     * {
@@ -499,11 +499,11 @@
 
   <header id="main-header">
     <div class="logo">
-      <h1>COURSES</h1>
+      <h1>COURCES</h1>
     </div>
     <nav>
       <ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
       </ul>
     </nav>
     <div class="search-box">
@@ -689,61 +689,105 @@
     </div>
   </footer>
 
-  <script>
+<script>
     // Add active class to current page navigation item
     document.addEventListener('DOMContentLoaded', function() {
-      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-      const navLinks = document.querySelectorAll('nav ul li a');
-      
-      navLinks.forEach(link => {
-        const linkPage = link.getAttribute('href');
-        if (currentPage === linkPage || 
-            (currentPage === '' && linkPage === 'index.html') || 
-            (currentPage === 'cources.html' && linkPage === '#')) {
-          link.classList.add('active');
-        } else {
-          link.classList.remove('active');
-        }
-      });
+        const currentPage = window.location.pathname.split('/').pop();
+        const navLinks = document.querySelectorAll('nav ul li a');
+        
+        // Check if we're in mobile view
+        const isMobileView = window.innerWidth <= 768;
+        
+        navLinks.forEach(link => {
+            const linkPage = link.getAttribute('href');
+            
+            // For mobile view, only add active class if we're exactly on that page
+            if (isMobileView) {
+                if (currentPage === linkPage || 
+                    (currentPage === undefined && linkPage === 'index.html') ||
+                    (currentPage === 'index.html' && linkPage === '#')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            } 
+            // For desktop, keep the original behavior
+            else {
+                if (currentPage === linkPage || 
+                    (currentPage === undefined && linkPage === 'index.html') ||
+                    (currentPage === 'index.html' && linkPage === '#')) {
+                    link.classList.add('active');
+                }
+            }
+        });
+    });
+
+    // Handle window resize to update active state if viewport changes
+    window.addEventListener('resize', function() {
+        const currentPage = window.location.pathname.split('/').pop();
+        const navLinks = document.querySelectorAll('nav ul li a');
+        const isMobileView = window.innerWidth <= 768;
+        
+        navLinks.forEach(link => {
+            const linkPage = link.getAttribute('href');
+            
+            if (isMobileView) {
+                if (currentPage === linkPage || 
+                    (currentPage === undefined && linkPage === 'index.html') ||
+                    (currentPage === 'index.html' && linkPage === '#')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            } else {
+                if (currentPage === linkPage || 
+                    (currentPage === undefined && linkPage === 'index.html') ||
+                    (currentPage === 'index.html' && linkPage === '#')) {
+                    link.classList.add('active');
+                }
+            }
+        });
     });
 
     function searchDocuments() {
-      const searchQuery = document.getElementById('search-input').value.replace(/\s+/g, '').toLowerCase();
-      const docSections = document.querySelectorAll('.docs-section');
+        const searchQuery = document.getElementById('search-input').value.replace(/\s+/g, '').toLowerCase();
+        const docSections = document.querySelectorAll('.docs-section');
 
-      docSections.forEach(section => {
-        const docCards = section.querySelectorAll('.doc-card');
-        let found = false;
+        docSections.forEach(section => {
+            const docCards = section.querySelectorAll('.doc-card');
+            let found = false;
 
-        docCards.forEach(card => {
-          const title = card.querySelector('.doc-title').textContent.replace(/\s+/g, '').toLowerCase();
-          
-          if (title.includes(searchQuery)) {
-            card.style.display = 'block';
-            found = true;
-          } else {
-            card.style.display = 'none';
-          }
+            docCards.forEach(card => {
+                const title = card.querySelector('.doc-title').textContent.replace(/\s+/g, '').toLowerCase();
+                
+                if (title.includes(searchQuery)) {
+                    card.style.display = 'block';
+                    found = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const sectionHeading = section.querySelector('h2');
+            if (found) {
+                sectionHeading.style.display = 'block';
+            } else {
+                sectionHeading.style.display = 'none';
+            }
         });
-
-        const sectionHeading = section.querySelector('h2');
-        if (found) {
-          sectionHeading.style.display = 'block';
-        } else {
-          sectionHeading.style.display = 'none';
-        }
-      });
     }
 
     // Add scroll effect to header
     window.addEventListener('scroll', function() {
-      const header = document.getElementById('main-header');
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
+        const header = document.getElementById('main-header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
     });
-  </script>
+</script>
+
+
 </body>
 </html>

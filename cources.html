@@ -312,6 +312,16 @@
       font-size: 12px;
     }
 
+    /* No results message */
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px;
+      color: rgba(255,255,255,0.7);
+      font-size: 18px;
+      display: none;
+    }
+
     /* Enhanced Footer with Telegram Effects */
     footer {
       background: linear-gradient(180deg, #0a121b, #070d14);
@@ -503,7 +513,8 @@
     </div>
     <nav>
       <ul>
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html" class="active">HOME</a></li>
+         <li><a href="SIL.html" class="active">SIL</a></li>
       </ul>
     </nav>
     <div class="search-box">
@@ -514,7 +525,9 @@
 
   <section class="docs-section">
     <h2>CSE</h2>
-    <div class="docs-container">
+    <div class="docs-container" id="cse-container">
+      <div class="no-results" id="cse-no-results">No courses found matching your search.</div>
+      
       <a class="doc-card" href="fsad-moocs.html">
         <div class="doc-thumbnail">
   <img src="https://raw.githubusercontent.com/Brahmendra06/sok/main/COURCES/AADS.jpg" alt="AADS Course Image">
@@ -629,7 +642,9 @@
 
   <section class="docs-section">
     <h2>AI&DS</h2>
-    <div class="docs-container">
+    <div class="docs-container" id="aids-container">
+      <div class="no-results" id="aids-no-results">No courses found matching your search.</div>
+      
       <a class="doc-card" href="fsad-moocs.html">
         <div class="doc-thumbnail">
           <img src="https://raw.githubusercontent.com/Brahmendra06/sok/main/COURCES/AADS.jpg" alt="AADS Course Image">
@@ -693,27 +708,36 @@
     function searchDocuments() {
       const searchQuery = document.getElementById('search-input').value.replace(/\s+/g, '').toLowerCase();
       const docSections = document.querySelectorAll('.docs-section');
+      let anyResultsFound = false;
 
       docSections.forEach(section => {
         const docCards = section.querySelectorAll('.doc-card');
-        let found = false;
+        const noResultsElement = section.querySelector('.no-results');
+        let sectionHasResults = false;
 
         docCards.forEach(card => {
           const title = card.querySelector('.doc-title').textContent.replace(/\s+/g, '').toLowerCase();
           
           if (title.includes(searchQuery)) {
             card.style.display = 'block';
-            found = true;
+            sectionHasResults = true;
+            anyResultsFound = true;
           } else {
             card.style.display = 'none';
           }
         });
 
         const sectionHeading = section.querySelector('h2');
-        if (found) {
+        if (sectionHasResults) {
           sectionHeading.style.display = 'block';
+          noResultsElement.style.display = 'none';
         } else {
-          sectionHeading.style.display = 'none';
+          if (searchQuery.length > 0) {
+            noResultsElement.style.display = 'block';
+          } else {
+            noResultsElement.style.display = 'none';
+          }
+          sectionHeading.style.display = sectionHasResults ? 'block' : 'none';
         }
       });
     }
@@ -726,6 +750,13 @@
       } else {
         header.classList.remove('scrolled');
       }
+    });
+
+    // Initialize - hide no results messages by default
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.no-results').forEach(el => {
+        el.style.display = 'none';
+      });
     });
   </script>
 </body>

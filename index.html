@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduDocs - FSAD, MP, PSQT Materials</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Amazon Ember', Arial, sans-serif;
+    }
+
+    body {
+      background-color: #0f1923;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    @font-face {
+      font-family: 'Amazon Ember';
+      src: url('https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-sans._TTH_.ttf') format('truetype');
+    }
+
+    /* Header with enhanced styling */
+    header {
+      background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      backdrop-filter: blur(5px);
+    }
+
+    header.scrolled {
+      background-color: rgba(15, 25, 35, 0.95);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      padding: 10px 5%;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo h1 {
+      color: #00a8e1;
+      font-size: 28px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(0, 168, 225, 0.3);
+      transition: all 0.3s;
+    }
+
+    header.scrolled .logo h1 {
+      font-size: 24px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: all 0.3s;
+      font-size: 16px;
+      padding: 5px 0;
+      display: block;
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      color: #00a8e1;
+      transform: translateY(-2px);
+    }
+
+    nav ul li a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #00a8e1, #007eb9);
+      border-radius: 2px;
+    }
+
+    .search-box {
+      display: flex;
+      margin-top: 10px;
+      position: relative;
+    }
+
+    .search-box input {
+      padding: 10px 15px 10px 40px;
+      border: none;
+      border-radius: 4px;
+      outline: none;
+      width: 200px;
+      background-color: rgba(255,255,255,0.15);
+      color: white;
+      font-size: 14px;
+      transition: all 0.3s;
+      backdrop-filter: blur(5px);
+    }
+
+    .search-box input:focus {
+      width: 250px;
+      background-color: rgba(0,0,0,0.7);
+      box-shadow: 0 0 0 2px #00a8e1;
+    }
+
+    .search-box input::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .search-box::before {
+      content: '\f002';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.7);
+      z-index: 1;
+    }
+
+    .search-box button {
+      background: linear-gradient(135deg, #00a8e1, #007eb9);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: all 0.3s;
+      font-weight: 600;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .search-box button:hover {
+      background: linear-gradient(135deg, #0088b7, #006a9b);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+    }
+
+    .hero-content h2 {
+      font-size: 48px;
+      font-weight: 700;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      line-height: 1.2;
+      background: linear-gradient(to right, #ffffff, #00a8e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Course Sections with Enhanced Styling */
+    .docs-section {
+      padding: 60px 5%;
+      position: relative;
+    }
+
+    .docs-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(0, 168, 225, 0.5), transparent);
+    }
+
+    .docs-section h2 {
+      margin-bottom: 30px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      padding-left: 20px;
+      display: inline-block;
+    }
+
+    .docs-section h2::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 5px;
+      background: linear-gradient(to bottom, #00a8e1, #007eb9);
+      border-radius: 3px;
+      box-shadow: 0 0 10px rgba(0, 168, 225, 0.5);
+    }
+
+    .docs-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .doc-card {
+      background: linear-gradient(135deg, #1a2a3a, #14202d);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .doc-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+      z-index: 10;
+      border-color: rgba(0, 168, 225, 0.3);
+    }
+
+    .doc-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 40%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .doc-card:hover::after {
+      opacity: 1;
+    }
+
+    .doc-thumbnail {
+      width: 100%;
+      height: 250px;
+      background-color: #2a3a4a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .doc-thumbnail::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(0, 168, 225, 0.1), transparent);
+      z-index: 1;
+    }
+
+    .doc-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .doc-card:hover .doc-thumbnail img {
+      transform: scale(1.1);
+    }
+
+    .doc-info {
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .doc-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #ffffff;
+      transition: color 0.3s;
+    }
+
+    .doc-card:hover .doc-title {
+      color: #00a8e1;
+    }
+
+    .doc-meta {
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .doc-meta span {
+      display: flex;
+      align-items: center;
+    }
+
+    .doc-meta span:first-child::before {
+      content: '\f133';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-right: 8px;
+      color: #00a8e1;
+      font-size: 12px;
+    }
+
+    .doc-meta span:last-child::before {
+      content: '\f02d';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-right: 8px;
+      color: #00a8e1;
+      font-size: 12px;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(180deg, #0a121b, #070d14);
+      padding: 20px 5%;
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(0, 168, 225, 0.5), transparent);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-content p {
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .footer-content a {
+      color: #00a8e1;
+      text-decoration: none;
+      transition: color 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .footer-content a:hover {
+      color: #ffffff;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0a121b;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #00a8e1;
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #007eb9;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+      }
+      
+      nav {
+        margin: 15px 0;
+        width: 100%;
+      }
+      
+      nav ul {
+        justify-content: space-between;
+        width: 100%;
+      }
+      
+      nav ul li a {
+        margin: 0 5px;
+      }
+      
+      .search-box {
+        width: 100%;
+        margin: 15px 0;
+      }
+      
+      .search-box input {
+        width: 100%;
+      }
+      
+      .hero-content h2 {
+        font-size: 36px;
+      }
+      
+      .docs-container {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h2 {
+        font-size: 28px;
+      }
+      
+      .docs-container {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="main-header">
+    <div class="logo">
+      <h1>STUDENTS OF KLU</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+      </ul>
+    </nav>
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="Search documents..." oninput="searchDocuments()">
+      <button onclick="searchDocuments()"><i class="fas fa-search"></i></button>
+    </div>
+  </header>
+
+  <div class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="1851190-uhd_3840_2160_25fps (1).mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-content">
+      <h2>Y23 Educational Resources</h2>
+    </div>
+  </div>
+
+  <section class="docs-section">
+    <h2>Available Resources</h2>
+    <div class="docs-container">
+      <a href="cources.html" class="doc-card">
+        <div class="doc-thumbnail">
+          <img src="Y23.jpg" alt="Y23 Resource">
+        </div>
+        <div class="doc-info">
+          <h3 class="doc-title">Y23</h3>
+          <div class="doc-meta"><span>2023</span><span>All units</span></div>
+        </div>
+      </a>
+      <a href="SIL.html" class="doc-card">
+        <div class="doc-thumbnail">
+          <img src="SIL.jpg" alt="SIL Resource">
+        </div>
+        <div class="doc-info">
+          <h3 class="doc-title">SIL</h3>
+          <div class="doc-meta"><span>2023</span><span>All units</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="docs-section">
+    <h2>KLU Portals</h2>
+    <div class="docs-container">
+      <a href="https://newerp.kluniversity.in" target="_blank" class="doc-card">
+        <div class="doc-thumbnail">
+          <img src="KLU ERP.jpg" alt="KLU ERP">
+        </div>
+        <div class="doc-info">
+          <h3 class="doc-title">KLU ERP</h3>
+          <div class="doc-meta"><span>Official</span><span>Portal</span></div>
+        </div>
+      </a>
+      <a href="https://lms.kluniversity.in/my/" target="_blank" class="doc-card">
+        <div class="doc-thumbnail">
+          <img src="KLU LMS.jpg" alt="KLU LMS">
+        </div>
+        <div class="doc-info">
+          <h3 class="doc-title">KLU LMS</h3>
+          <div class="doc-meta"><span>Services</span><span>Login</span></div>
+        </div>
+      </a>
+      <a href="https://academics.klef.in/" target="_blank" class="doc-card">
+        <div class="doc-thumbnail">
+          <img src="KLU ACCA.jpg" alt="KLU Academics">
+        </div>
+        <div class="doc-info">
+          <h3 class="doc-title">KLU ACADEMICS</h3>
+          <div class="doc-meta"><span>SIL</span><span>Portal</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Students of KLU. All rights reserved.</p>
+      <p><a href="https://t.me/students_of_klu" target="_blank"><i class="fab fa-telegram-plane"></i> Join us on Telegram</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function searchDocuments() {
+      const searchQuery = document.getElementById('search-input').value.replace(/\s+/g, '').toLowerCase();
+      const docSections = document.querySelectorAll('.docs-section');
+
+      docSections.forEach(section => {
+        const docCards = section.querySelectorAll('.doc-card');
+        let found = false;
+
+        docCards.forEach(card => {
+          const title = card.querySelector('.doc-title').textContent.replace(/\s+/g, '').toLowerCase();
+          
+          if (title.includes(searchQuery)) {
+            card.style.display = 'block';
+            found = true;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        const sectionHeading = section.querySelector('h2');
+        if (found) {
+          sectionHeading.style.display = 'block';
+        } else {
+          sectionHeading.style.display = 'none';
+        }
+      });
+    }
+
+    // Add scroll effect to header
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('main-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>

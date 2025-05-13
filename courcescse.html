@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,12 +94,37 @@
       background: rgba(255, 255, 255, 0.1);
     }
 
+    /* Theme toggle icon colors */
+    .bi-sun {
+      color: white;
+    }
+    
+    body[data-theme="light"] .bi-sun {
+      color: #2d3436;
+    }
+    
+    .bi-moon {
+      color: #2d3436;
+    }
+    
+    body[data-theme="light"] .bi-moon {
+      color: #2d3436;
+    }
+
+    /* Menu toggle icon colors */
+    .menu-toggle {
+      color: white;
+    }
+    
+    body[data-theme="light"] .menu-toggle {
+      color: #2d3436;
+    }
+
     /* Mobile menu button */
     .menu-toggle {
       display: none;
       background: none;
       border: none;
-      color: white;
       font-size: 24px;
       cursor: pointer;
       margin-right: 15px;
@@ -216,7 +242,8 @@
       background-color: rgba(0, 0, 0, 0.7);
       z-index: 999;
       display: none;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
     .mobile-menu {
@@ -1006,10 +1033,14 @@
         document.body.removeAttribute('data-theme');
         sunIcon.style.display = 'block';
         moonIcon.style.display = 'none';
+        // Set menu toggle color to white in dark mode
+        document.querySelector('.menu-toggle').style.color = 'white';
       } else {
         document.body.setAttribute('data-theme', 'light');
         sunIcon.style.display = 'none';
         moonIcon.style.display = 'block';
+        // Set menu toggle color to dark in light mode
+        document.querySelector('.menu-toggle').style.color = '#2d3436';
       }
       localStorage.setItem('theme', document.body.getAttribute('data-theme'));
     }
@@ -1020,13 +1051,14 @@
       document.body.setAttribute('data-theme', 'light');
       sunIcon.style.display = 'none';
       moonIcon.style.display = 'block';
-       moonIcon.style.color = 'black'; // Set moon icon color to black in light mode
-    }  else {
-  moonIcon.style.color = 'white'; // Set moon icon color to white in dark mode
-}
+      document.querySelector('.menu-toggle').style.color = '#2d3436';
+    } else {
+      sunIcon.style.display = 'block';
+      moonIcon.style.display = 'none';
+      document.querySelector('.menu-toggle').style.color = 'white';
+    }
 
     themeToggle.addEventListener('click', toggleTheme);
-
     // Initialize - hide no results messages by default
     document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.no-results').forEach(el => {

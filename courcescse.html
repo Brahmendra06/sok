@@ -17,6 +17,7 @@
       background-color: #0f1923;
       color: #ffffff;
       overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     body.menu-open {
@@ -65,6 +66,29 @@
 
     header.scrolled .logo h1 {
       font-size: 24px;
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      margin-left: 15px;
+      transition: all 0.3s;
+      position: relative;
+      padding: 5px;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.1);
     }
 
     /* Mobile menu button */
@@ -246,7 +270,6 @@
       cursor: pointer;
     }
 
-    /* Rest of your styles remain the same... */
     /* Course Sections */
     .docs-section {
       padding: 60px 5%;
@@ -534,6 +557,79 @@
       background: #007eb9;
     }
 
+    /* Light Mode Styles */
+    body[data-theme="light"] {
+      background-color: #f5f6fa;
+      color: #2d3436;
+    }
+
+    body[data-theme="light"] header {
+      background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
+    }
+
+    body[data-theme="light"] header.scrolled {
+      background-color: rgba(245, 246, 250, 0.95);
+    }
+
+    body[data-theme="light"] .doc-card {
+      background: linear-gradient(135deg, #ffffff, #f1f2f6);
+      border-color: rgba(0,0,0,0.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    body[data-theme="light"] .doc-title {
+      color: #2d3436;
+    }
+
+    body[data-theme="light"] .doc-meta {
+      color: rgba(45, 52, 54, 0.7);
+    }
+
+    body[data-theme="light"] footer {
+      background: linear-gradient(180deg, #e1e5ee, #d5dae6);
+    }
+
+    body[data-theme="light"] .search-box input {
+      background-color: rgba(0,0,0,0.05);
+      color: #2d3436;
+    }
+
+    body[data-theme="light"] .search-box input::placeholder {
+      color: rgba(45, 52, 54, 0.7);
+    }
+
+    body[data-theme="light"] .search-box::before {
+      color: rgba(45, 52, 54, 0.7);
+    }
+
+    body[data-theme="light"] .docs-section h2 {
+      color: #2d3436;
+    }
+
+    body[data-theme="light"] .footer-content p {
+      color: rgba(45, 52, 54, 0.7);
+    }
+
+    body[data-theme="light"] .footer-content a {
+      color: #00a8e1;
+      background: rgba(0, 168, 225, 0.1);
+      border: 1px solid rgba(0, 168, 225, 0.3);
+    }
+
+    body[data-theme="light"] .footer-content a:hover {
+      color: #ffffff;
+      background: rgba(0, 168, 225, 0.2);
+    }
+
+    /* Update scrollbar for light mode */
+    body[data-theme="light"] ::-webkit-scrollbar-track {
+      background: #f1f2f6;
+    }
+
+    body[data-theme="light"] ::-webkit-scrollbar-thumb {
+      background: #00a8e1;
+    }
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .menu-toggle {
@@ -581,6 +677,11 @@
       body.menu-open .search-box {
         display: none;
       }
+
+      /* Adjust theme toggle for mobile */
+      .theme-toggle {
+        margin-left: auto;
+      }
     }
 
     @media (max-width: 480px) {
@@ -602,9 +703,13 @@
     <nav id="desktop-nav">
       <ul>
         <li><a href="index.html" class="active">HOME</a></li>
-        <li><a href="SIL.html" class="active" >SIL</a></li>
+        <li><a href="SIL.html" class="active">SIL</a></li>
       </ul>
     </nav>
+    <button class="theme-toggle" id="theme-toggle">
+      <i class="fas fa-sun"></i>
+      <i class="fas fa-moon" style="display: none;"></i>
+    </button>
     <div class="search-box">
       <input type="text" id="search-input" placeholder="Search materials..." oninput="searchDocuments()">
       <button onclick="searchDocuments()"><i class="fas fa-search"></i></button>
@@ -879,6 +984,34 @@
         header.classList.remove('scrolled');
       }
     });
+
+    // Theme Toggle Functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const sunIcon = themeToggle.querySelector('.fa-sun');
+    const moonIcon = themeToggle.querySelector('.fa-moon');
+    
+    function toggleTheme() {
+      if (document.body.getAttribute('data-theme') === 'light') {
+        document.body.removeAttribute('data-theme');
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      }
+      localStorage.setItem('theme', document.body.getAttribute('data-theme'));
+    }
+
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.body.setAttribute('data-theme', 'light');
+      sunIcon.style.display = 'block';
+      moonIcon.style.display = 'none';
+    }
+
+    themeToggle.addEventListener('click', toggleTheme);
 
     // Initialize - hide no results messages by default
     document.addEventListener('DOMContentLoaded', function() {

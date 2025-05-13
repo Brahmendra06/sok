@@ -345,9 +345,18 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 40%);
       opacity: 0;
       transition: opacity 0.3s;
+    }
+
+    /* Dark mode gradient */
+    body:not([data-theme="light"]) .doc-card::after {
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 40%);
+    }
+
+    /* Light mode gradient */
+    body[data-theme="light"] .doc-card::after {
+      background: linear-gradient(to top, rgba(254, 254, 254, 0.833) 0%, rgba(0,0,0,0) 40%);
     }
 
     .doc-card:hover::after {
@@ -992,30 +1001,30 @@
     const sunIcon = themeToggle.querySelector('.bi-sun');
     const moonIcon = themeToggle.querySelector('.bi-moon');
     
-function toggleTheme() {
-  if (document.body.getAttribute('data-theme') === 'light') {
-    document.body.removeAttribute('data-theme');
-    sunIcon.style.display = 'block';
-    moonIcon.style.display = 'none';
-  } else {
-    document.body.setAttribute('data-theme', 'light');
-    sunIcon.style.display = 'none';
-    moonIcon.style.display = 'block';
-    moonIcon.style.color = 'black'; // Change moon icon color to black in light mode
-  }
-  localStorage.setItem('theme', document.body.getAttribute('data-theme'));
-}
+    function toggleTheme() {
+      if (document.body.getAttribute('data-theme') === 'light') {
+        document.body.removeAttribute('data-theme');
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      }
+      localStorage.setItem('theme', document.body.getAttribute('data-theme'));
+    }
 
-// Check for saved theme preference
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'light') {
-  document.body.setAttribute('data-theme', 'light');
-  sunIcon.style.display = 'none';
-  moonIcon.style.display = 'block';
-  moonIcon.style.color = 'black'; // Set moon icon color to black in light mode
-} else {
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.body.setAttribute('data-theme', 'light');
+      sunIcon.style.display = 'none';
+      moonIcon.style.display = 'block';
+       moonIcon.style.color = 'black'; // Set moon icon color to black in light mode
+    }  else {
   moonIcon.style.color = 'white'; // Set moon icon color to white in dark mode
 }
+
     themeToggle.addEventListener('click', toggleTheme);
 
     // Initialize - hide no results messages by default
@@ -1026,4 +1035,4 @@ if (savedTheme === 'light') {
     });
   </script>
 </body>
-</html> 
+</html>

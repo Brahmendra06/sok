@@ -19,6 +19,10 @@
       overflow-x: hidden;
     }
 
+    body.menu-open {
+      overflow: hidden;
+    }
+
     @font-face {
       font-family: 'Amazon Ember';
       src: url('https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-sans._TTH_.ttf') format('truetype');
@@ -119,6 +123,7 @@
     .search-box {
       display: flex;
       position: relative;
+      transition: all 0.3s ease;
     }
 
     .search-box input {
@@ -185,6 +190,7 @@
       background-color: rgba(0, 0, 0, 0.7);
       z-index: 999;
       display: none;
+      backdrop-filter: blur(5px);
     }
 
     .mobile-menu {
@@ -194,11 +200,12 @@
       width: 80%;
       max-width: 300px;
       height: 100%;
-      background-color: #0f1923;
+      background-color: rgba(15, 25, 35, 0.95);
       z-index: 1000;
       transition: left 0.3s ease;
       padding: 20px;
       overflow-y: auto;
+      backdrop-filter: blur(10px);
     }
 
     .mobile-menu.active {
@@ -239,6 +246,7 @@
       cursor: pointer;
     }
 
+    /* Rest of your styles remain the same... */
     /* Course Sections */
     .docs-section {
       padding: 60px 5%;
@@ -568,6 +576,11 @@
       .footer-content a {
         padding: 8px 16px;
       }
+
+      /* Hide search when menu is open */
+      body.menu-open .search-box {
+        display: none;
+      }
     }
 
     @media (max-width: 480px) {
@@ -589,7 +602,7 @@
     <nav id="desktop-nav">
       <ul>
         <li><a href="index.html" class="active">HOME</a></li>
-        <li><a href="SIL.html">SIL</a></li>
+        <li><a href="SIL.html" class="active" >SIL</a></li>
       </ul>
     </nav>
     <div class="search-box">
@@ -728,7 +741,64 @@
       </a>
     </div>
   </section>
-  
+
+  <section class="docs-section">
+    <h2>AI&DS</h2>
+    <div class="docs-container" id="aids-container">
+      <div class="no-results" id="aids-no-results">No courses found matching your search.</div>
+      
+      <a class="doc-card" href="fsad-moocs.html">
+        <div class="doc-thumbnail">
+          <img src="https://raw.githubusercontent.com/Brahmendra06/sok/main/COURCES/AADS.jpg" alt="AADS Course Image">
+        </div>
+        <div class="doc-info">
+          <div class="doc-title">AADS</div>
+          <div class="doc-meta">AADS EVEN SEM</div>
+        </div>
+      </a>
+
+      <a class="doc-card" href="fsad-moocs.html">
+        <div class="doc-thumbnail">
+          <img src="https://raw.githubusercontent.com/Brahmendra06/sok/main/COURCES/DL.jpg" alt="DL Course Image">
+        </div>
+        <div class="doc-info">
+          <div class="doc-title">DL</div>
+          <div class="doc-meta">DL EVEN SEM</div>
+        </div>
+      </a>
+
+      <a class="doc-card" href="fsad-moocs.html">
+        <div class="doc-thumbnail">
+          <img src="https://raw.githubusercontent.com/Brahmendra06/sok/main/COURCES/DAA.jpg" alt="DAA Course Image">
+        </div>
+        <div class="doc-info">
+          <div class="doc-title">DAA</div>
+          <div class="doc-meta">DAA EVEN SEM</div>
+        </div>
+      </a>
+
+      <a class="doc-card" href="fsad-workbook.html">
+        <div class="doc-thumbnail">
+          <img src="https://raw.githubusercontent.com/Brahmendra06/sok/main/COURCES/FSAD.jpg" alt="FSAD Course Image">
+        </div>
+        <div class="doc-info">
+          <div class="doc-title">FSAD</div>
+          <div class="doc-meta">FSAD EVEN SEM</div>
+        </div>
+      </a>
+
+      <a class="doc-card" href="fsad-moocs.html">
+        <div class="doc-thumbnail">
+          <img src="https://raw.githubusercontent.com/Brahmendra06/sok/main/COURCES/MP.jpg" alt="MP Course Image">
+        </div>
+        <div class="doc-info">
+          <div class="doc-title">MP</div>
+          <div class="doc-meta">MP EVEN SEM</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
   <footer>
     <div class="footer-content">
       <p>&copy; 2025 Students of KLU. All rights reserved.</p>
@@ -742,23 +812,24 @@
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
     const closeMenu = document.getElementById('close-menu');
+    const body = document.body;
 
     menuToggle.addEventListener('click', () => {
       mobileMenu.classList.add('active');
       mobileMenuBackdrop.style.display = 'block';
-      document.body.style.overflow = 'hidden';
+      body.classList.add('menu-open');
     });
 
     closeMenu.addEventListener('click', () => {
       mobileMenu.classList.remove('active');
       mobileMenuBackdrop.style.display = 'none';
-      document.body.style.overflow = 'auto';
+      body.classList.remove('menu-open');
     });
 
     mobileMenuBackdrop.addEventListener('click', () => {
       mobileMenu.classList.remove('active');
       mobileMenuBackdrop.style.display = 'none';
-      document.body.style.overflow = 'auto';
+      body.classList.remove('menu-open');
     });
 
     // Search functionality

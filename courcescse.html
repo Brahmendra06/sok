@@ -265,6 +265,7 @@
         padding: 20px;
         overflow-y: auto;
         backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
       }
 
       .mobile-menu nav ul li a {
@@ -276,20 +277,21 @@
         transition: all 0.3s;
       }
 
-      /* Light mode mobile menu */
+      /* Light mode mobile menu - blue tint */
       body[data-theme="light"] .mobile-menu {
-        background-color: rgba(255, 255, 255, 0.95);
+        background-color: white;
         backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-right: 1px solid rgba(0, 168, 225, 0.2);
       }
 
       body[data-theme="light"] .mobile-menu nav ul li a {
-        color: black;
+        color: #333;
       }
 
-      /* Blur header when menu is open */
+      /* Hide header when menu is open */
       body.menu-open header {
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        display: none;
       }
 
       .mobile-menu.active {
@@ -305,10 +307,30 @@
         margin-bottom: 15px;
       }
 
-      .mobile-menu nav ul li a:hover,
-      .mobile-menu nav ul li a.active {
-        color: #00a8e1;
-      }
+      
+/* Dark mode hover and active effect */
+.mobile-menu nav ul li a:hover,
+.mobile-menu nav ul li a.active {
+  color: yellow;
+  border: 2px solid rgba(255, 255, 255, 0.8); /* Light transparent white border */
+  background-color: rgba(255, 255, 255, 0.1); /* Slightly visible background */
+  border-radius: 10px;                        /* Rounded corners */
+  padding: 10px 15px;                         /* Adjust padding for spacing */
+  display: block;                             /* Ensures proper block layout */
+}
+
+/* Light mode hover and active effect */
+body[data-theme="light"] .mobile-menu nav ul li a:hover,
+body[data-theme="light"] .mobile-menu nav ul li a.active {
+  color: yellow;
+  border: 2px solid rgba(0, 0, 0, 0.2);       /* Light transparent black border */
+  background-color: rgba(0, 0, 0, 0.05);     /* Slightly visible background */
+  border-radius: 10px;                        /* Rounded corners */
+  padding: 10px 15px;                         /* Adjust padding for spacing */
+  display: block;                             /* Ensures proper block layout */
+}
+
+
 
       .close-menu {
         position: absolute;
@@ -322,7 +344,7 @@
       }
 
       body[data-theme="light"] .close-menu {
-        color: black;
+        color: #333;
       }
 
       /* Main content wrapper */

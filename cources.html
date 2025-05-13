@@ -64,6 +64,17 @@
       font-size: 24px;
     }
 
+    /* Mobile menu button */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      margin-right: 15px;
+    }
+
     nav ul {
       display: flex;
       list-style: none;
@@ -160,6 +171,101 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
 
+    /* Mobile menu styles */
+    .mobile-menu-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+      display: none;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100%;
+      background-color: #0f1923;
+      z-index: 1000;
+      transition: left 0.3s ease;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      left: 0;
+    }
+
+    .mobile-menu nav ul {
+      flex-direction: column;
+      margin-top: 30px;
+    }
+
+    .mobile-menu nav ul li {
+      margin-bottom: 15px;
+    }
+
+    .mobile-menu nav ul li a {
+      margin: 0;
+      padding: 10px 0;
+      font-size: 18px;
+    }
+
+    .close-menu {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .search-box {
+        width: 100%;
+        margin: 15px 0;
+      }
+
+      .search-box input {
+        width: 100%;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+      }
+
+      .logo {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .mobile-menu-backdrop,
+      .mobile-menu {
+        display: none !important;
+      }
+    }
+
+    /* Rest of your existing styles... */
     /* Course Sections with Enhanced Styling */
     .docs-section {
       padding: 60px 5%;
@@ -447,111 +553,35 @@
       background: #007eb9;
     }
 
-    /* Mobile Menu Styles */
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 24px;
-      margin-right: 15px;
-      cursor: pointer;
-    }
-
-    .mobile-menu-backdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: 999;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .mobile-menu-backdrop.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      left: -280px;
-      width: 280px;
-      height: 100%;
-      background-color: #0f1923;
-      z-index: 1000;
-      transition: all 0.3s ease;
-      overflow-y: auto;
-    }
-
-    .mobile-menu.active {
-      left: 0;
-    }
-
-    .mobile-menu-header {
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .close-mobile-menu {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .mobile-nav {
-      padding: 20px;
-    }
-
-    .mobile-nav ul {
-      list-style: none;
-    }
-
-    .mobile-nav ul li {
-      margin-bottom: 15px;
-    }
-
-    .mobile-nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      display: block;
-      padding: 10px 0;
-      transition: all 0.3s;
-    }
-
-    .mobile-nav ul li a:hover {
-      color: #00a8e1;
-    }
-
     /* Responsive adjustments */
     @media (max-width: 768px) {
       header {
-        flex-direction: row;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         padding: 15px;
       }
       
-      .menu-toggle {
-        display: block;
+      nav {
+        margin: 15px 0;
+        width: 100%;
       }
       
-      nav {
-        display: none;
+      nav ul {
+        justify-content: space-between;
+        width: 100%;
+      }
+      
+      nav ul li a {
+        margin: 0 5px;
       }
       
       .search-box {
-        margin-left: auto;
-        margin-right: 15px;
+        width: 100%;
+        margin: 15px 0;
+      }
+      
+      .search-box input {
+        width: 100%;
       }
       
       .docs-container {
@@ -578,40 +608,24 @@
       .docs-container {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       }
-      
-      .search-box {
-        width: 180px;
-      }
-      
-      .search-box input {
-        width: 100%;
-        padding: 8px 15px 8px 35px;
-      }
-      
-      .search-box button {
-        padding: 8px 15px;
-      }
     }
   </style>
 </head>
 <body>
 
   <header id="main-header">
-    <button class="menu-toggle" id="menu-toggle">
-      <i class="fas fa-bars"></i>
-    </button>
-    
     <div class="logo">
+      <button class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
       <h1>COURCES</h1>
     </div>
-    
-    <nav id="main-nav">
+    <nav id="desktop-nav">
       <ul>
         <li><a href="index.html" class="active">HOME</a></li>
         <li><a href="SIL.html" class="active">SIL</a></li>
       </ul>
     </nav>
-    
     <div class="search-box">
       <input type="text" id="search-input" placeholder="Search materials..." oninput="searchDocuments()">
       <button onclick="searchDocuments()"><i class="fas fa-search"></i></button>
@@ -620,25 +634,19 @@
 
   <!-- Mobile Menu -->
   <div class="mobile-menu-backdrop" id="mobile-menu-backdrop"></div>
-  
   <div class="mobile-menu" id="mobile-menu">
-    <div class="mobile-menu-header">
-      <div class="logo">
-        <h1 style="font-size: 22px;">COURCES</h1>
-      </div>
-      <button class="close-mobile-menu" id="close-mobile-menu">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-    
-    <div class="mobile-nav">
+    <button class="close-menu" id="close-menu">
+      <i class="fas fa-times"></i>
+    </button>
+    <nav>
       <ul>
         <li><a href="index.html" class="active">HOME</a></li>
-        <li><a href="SIL.html" class="active" >SIL</a></li>
+        <li><a href="SIL.html">SIL</a></li>
       </ul>
-    </div>
+    </nav>
   </div>
 
+  <!-- Rest of your content... -->
   <section class="docs-section">
     <h2>CSE</h2>
     <div class="docs-container" id="cse-container">
@@ -821,44 +829,43 @@
   </footer>
 
   <script>
-    // Mobile menu toggle
+    // Mobile menu functionality
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
-    const closeMobileMenu = document.getElementById('close-mobile-menu');
-    
+    const closeMenu = document.getElementById('close-menu');
+
     menuToggle.addEventListener('click', () => {
       mobileMenu.classList.add('active');
-      mobileMenuBackdrop.classList.add('active');
+      mobileMenuBackdrop.style.display = 'block';
       document.body.style.overflow = 'hidden';
     });
-    
-    closeMobileMenu.addEventListener('click', () => {
+
+    closeMenu.addEventListener('click', () => {
       mobileMenu.classList.remove('active');
-      mobileMenuBackdrop.classList.remove('active');
-      document.body.style.overflow = '';
+      mobileMenuBackdrop.style.display = 'none';
+      document.body.style.overflow = 'auto';
     });
-    
+
     mobileMenuBackdrop.addEventListener('click', () => {
       mobileMenu.classList.remove('active');
-      mobileMenuBackdrop.classList.remove('active');
-      document.body.style.overflow = '';
+      mobileMenuBackdrop.style.display = 'none';
+      document.body.style.overflow = 'auto';
     });
-    
-    // Search function
+
+    // Existing search functionality
     function searchDocuments() {
-      const searchQuery = document.getElementById('search-input').value.toLowerCase();
-      
+      const searchQuery = document.getElementById('search-input').value.replace(/\s+/g, '').toLowerCase();
       const docSections = document.querySelectorAll('.docs-section');
       let anyResultsFound = false;
-    
+
       docSections.forEach(section => {
         const docCards = section.querySelectorAll('.doc-card');
         const noResultsElement = section.querySelector('.no-results');
         let sectionHasResults = false;
-    
+
         docCards.forEach(card => {
-          const title = card.querySelector('.doc-title').textContent.toLowerCase();
+          const title = card.querySelector('.doc-title').textContent.replace(/\s+/g, '').toLowerCase();
           
           if (title.includes(searchQuery)) {
             card.style.display = 'block';
@@ -868,7 +875,7 @@
             card.style.display = 'none';
           }
         });
-    
+
         const sectionHeading = section.querySelector('h2');
         if (sectionHasResults) {
           sectionHeading.style.display = 'block';
@@ -883,7 +890,7 @@
         }
       });
     }
-    
+
     // Add scroll effect to header
     window.addEventListener('scroll', function() {
       const header = document.getElementById('main-header');
@@ -893,7 +900,7 @@
         header.classList.remove('scrolled');
       }
     });
-    
+
     // Initialize - hide no results messages by default
     document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.no-results').forEach(el => {

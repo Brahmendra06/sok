@@ -39,6 +39,7 @@
       }
 
       /* Header with mobile toggle */
+      /* Header with mobile toggle */
       header {
         background: rgba(15, 25, 35, 0.95);
         padding: 15px 5%;
@@ -48,8 +49,11 @@
         position: sticky;
         top: 0;
         z-index: 1000;
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         backdrop-filter: blur(5px);
+        will-change: transform;
+        transform: translateZ(0);
       }
 
       header.scrolled {

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <!-- Add Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <style>
+ <style>
       * {
         margin: 0;
         padding: 0;
@@ -270,10 +270,6 @@
         will-change: transform;
       }
 
-      .mobile-menu.active {
-        transform: translateX(100%);
-      }
-
       .mobile-menu nav ul li a {
         color: white;
         text-decoration: none;
@@ -300,7 +296,12 @@
         display: none;
       }
 
-      .mobile-menu nav ul {
+
+      .mobile-menu.active {
+        left: 0;
+      }
+
+  .mobile-menu nav ul {
         list-style: none;
         margin-top: 30px;
       }
@@ -309,7 +310,8 @@
         margin-bottom: 15px;
       }
 
-      /* Dark mode hover and active effect */
+      
+/* Dark mode hover and active effect */
       .mobile-menu nav ul li a:hover,
       .mobile-menu nav ul li a.active {
         color: yellow;
@@ -320,7 +322,8 @@
         display: block;
       }
 
-      /* Light mode hover and active effect */
+
+    /* Light mode hover and active effect */
       body[data-theme="light"] .mobile-menu nav ul li a:hover,
       body[data-theme="light"] .mobile-menu nav ul li a.active {
         color: yellow;
@@ -330,6 +333,7 @@
         padding: 10px 15px;
         display: block;
       }
+
 
       .close-menu {
         position: absolute;
@@ -346,7 +350,8 @@
         color: #333;
       }
 
-      /* Main content wrapper */
+      
+   /* Main content wrapper */
       .main-content {
         flex: 1;
         display: flex;
@@ -368,7 +373,7 @@
         height: 2px;
       }
 
-      .docs-section h2 {
+    .docs-section h2 {
         margin-bottom: 30px;
         font-size: 28px;
         font-weight: 700;
@@ -397,6 +402,7 @@
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         gap: 25px;
       }
+
 
       .doc-card {
         background: linear-gradient(135deg, #1a2a3a, #14202d);
@@ -432,6 +438,7 @@
         transition: opacity 0.3s;
       }
 
+
       /* Dark mode gradient */
       body:not([data-theme="light"]) .doc-card::after {
         background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 40%);
@@ -446,7 +453,7 @@
         opacity: 1;
       }
 
-      .doc-thumbnail {
+    .doc-thumbnail {
         width: 100%;
         height: 300px;
         background-color: #2a3a4a;
@@ -457,7 +464,7 @@
         position: relative;
       }
 
-      .doc-thumbnail::before {
+.doc-thumbnail::before {
         content: '';
         position: absolute;
         top: 0;
@@ -468,11 +475,12 @@
         z-index: 1;
       }
 
+
       .doc-thumbnail img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 0.5s;
       }
 
       .doc-card:hover .doc-thumbnail img {
@@ -516,7 +524,7 @@
         font-size: 12px;
       }
 
-      /* No results message */
+   /* No results message */
       .no-results {
         grid-column: 1 / -1;
         text-align: center;
@@ -791,6 +799,8 @@
         }
       }
     </style>
+
+
   </head>
   <body>
 
@@ -958,62 +968,6 @@
     </footer>
 
     <script>
-
-
-// Disable right-click
-document.addEventListener('contextmenu', function (e) {
-  e.preventDefault();
-});
-
-// Disable key combinations
-document.addEventListener('keydown', function (e) {
-  const key = e.key.toLowerCase();
-  // Block F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S, Ctrl+C
-  if (
-    key === 'f12' ||
-    (e.ctrlKey && e.shiftKey && key === 'i') ||
-    (e.ctrlKey && ['u', 's', 'c'].includes(key))
-  ) {
-    e.preventDefault();
-  }
-});
-
-// Block if loaded inside iframe
-if (window.top !== window.self) {
-  window.top.location = window.self.location;
-}
-
-// Weak DevTools detection using window size
-(function () {
-  const devtoolsThreshold = 160;
-
-  setInterval(() => {
-    const widthThreshold = window.outerWidth - window.innerWidth > devtoolsThreshold;
-    const heightThreshold = window.outerHeight - window.innerHeight > devtoolsThreshold;
-
-    if (widthThreshold || heightThreshold) {
-      // Blank the page or redirect
-      document.body.innerHTML = "<h1>Access Denied</h1>";
-    }
-  }, 1000);
-})();
-
-// DevTools detection using console trick (may not work on all browsers)
-(function () {
-  const element = new Image();
-  Object.defineProperty(element, 'id', {
-    get: function () {
-      document.body.innerHTML = "<h1>Access Blocked</h1>";
-    }
-  });
-  setInterval(() => {
-    console.log(element);
-  }, 1000);
-})();
-
-
-
-
       // Mobile menu functionality
       const menuToggle = document.getElementById('menu-toggle');
       const mobileMenu = document.getElementById('mobile-menu');

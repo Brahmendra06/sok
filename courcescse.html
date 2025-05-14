@@ -958,6 +958,62 @@
     </footer>
 
     <script>
+
+
+// Disable right-click
+document.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+});
+
+// Disable key combinations
+document.addEventListener('keydown', function (e) {
+  const key = e.key.toLowerCase();
+  // Block F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S, Ctrl+C
+  if (
+    key === 'f12' ||
+    (e.ctrlKey && e.shiftKey && key === 'i') ||
+    (e.ctrlKey && ['u', 's', 'c'].includes(key))
+  ) {
+    e.preventDefault();
+  }
+});
+
+// Block if loaded inside iframe
+if (window.top !== window.self) {
+  window.top.location = window.self.location;
+}
+
+// Weak DevTools detection using window size
+(function () {
+  const devtoolsThreshold = 160;
+
+  setInterval(() => {
+    const widthThreshold = window.outerWidth - window.innerWidth > devtoolsThreshold;
+    const heightThreshold = window.outerHeight - window.innerHeight > devtoolsThreshold;
+
+    if (widthThreshold || heightThreshold) {
+      // Blank the page or redirect
+      document.body.innerHTML = "<h1>Access Denied</h1>";
+    }
+  }, 1000);
+})();
+
+// DevTools detection using console trick (may not work on all browsers)
+(function () {
+  const element = new Image();
+  Object.defineProperty(element, 'id', {
+    get: function () {
+      document.body.innerHTML = "<h1>Access Blocked</h1>";
+    }
+  });
+  setInterval(() => {
+    console.log(element);
+  }, 1000);
+})();
+
+
+
+
       // Mobile menu functionality
       const menuToggle = document.getElementById('menu-toggle');
       const mobileMenu = document.getElementById('mobile-menu');
@@ -1093,7 +1149,7 @@
       }
 
       themeToggle.addEventListener('click', toggleTheme);
-      
+
       // Initialize - hide no results messages by default
       document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.no-results').forEach(el => {

@@ -45,6 +45,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+       gap: 10px;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -53,6 +54,11 @@
       backdrop-filter: blur(5px);
       will-change: transform;
       transform: translateZ(0);
+    }
+
+   .heading img {
+      height: 40px; /* adjust the size */
+      width: auto;
     }
 
     header.scrolled {
@@ -881,12 +887,14 @@
       <button class="menu-toggle" id="menu-toggle">
         <i class="fas fa-bars"></i>
       </button>
-      <h1>COURSES</h1>
+
+      <h1>SOK</h1>
+
     </div>
     <nav id="desktop-nav">
       <ul>
         <li><a href="index.html" class="active">HOME</a></li>
-        <li><a href="SIL.html">SIL</a></li>
+        <li><a href="branches.html" class="active" >BRANCHES</a></li>
       </ul>
     </nav>
     <button class="theme-toggle" id="theme-toggle">
@@ -908,7 +916,7 @@
     <nav>
       <ul>
         <li><a href="index.html">HOME</a></li>
-        <li><a href="SIL.html">SIL</a></li>
+        <li><a href="branches.html">BRANCHES</a></li>
       </ul>
     </nav>
   </div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>STUDENTS OF KLU</title>
+  <title>Y23 COURSES | STUDENTS OF KLU</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <style>
@@ -307,7 +307,7 @@
     .mobile-menu nav ul li {
       margin-bottom: 15px;
     }
-    
+
     /* Dark mode hover and active effect */
     .mobile-menu nav ul li a:hover,
     .mobile-menu nav ul li a.active {
@@ -505,7 +505,7 @@
 
     .doc-thumbnail {
       width: 100%;
-      height: 250px;
+      height: 300px;
       background-color: #2a3a4a;
       display: flex;
       align-items: center;
@@ -569,7 +569,7 @@
       align-items: center;
     }
 
-    .doc-meta span::before {
+    .doc-meta span:first-child::before {
       content: '\f133';
       font-family: 'Font Awesome 6 Free';
       font-weight: 900;
@@ -580,6 +580,11 @@
 
     .doc-meta span:last-child::before {
       content: '\f02d';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-right: 8px;
+      color: #00a8e1;
+      font-size: 12px;
     }
 
     /* No results message */
@@ -830,6 +835,10 @@
         gap: 15px;
       }
       
+      .doc-thumbnail {
+        height: 220px;
+      }
+
       .footer-content {
         flex-direction: column;
         gap: 20px;
@@ -859,6 +868,10 @@
       .docs-container {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       }
+      
+      .doc-thumbnail {
+        height: 180px;
+      }
     }
   </style>
 </head>
@@ -868,11 +881,12 @@
       <button class="menu-toggle" id="menu-toggle">
         <i class="fas fa-bars"></i>
       </button>
-      <h1>STUDENTS OF KLU</h1>
+      <h1>COURSES</h1>
     </div>
     <nav id="desktop-nav">
       <ul>
-        <li><a href="#" class="active">Home</a></li>
+        <li><a href="index.html" class="active">HOME</a></li>
+        <li><a href="SIL.html">SIL</a></li>
       </ul>
     </nav>
     <button class="theme-toggle" id="theme-toggle">
@@ -880,7 +894,7 @@
       <i class="bi bi-moon" style="display: none;"></i>
     </button>
     <div class="search-box">
-      <input type="text" id="search-input" placeholder="Search documents..." oninput="searchDocuments()">
+      <input type="text" id="search-input" placeholder="Search materials..." oninput="searchDocuments()">
       <button onclick="searchDocuments()"><i class="fas fa-search"></i></button>
     </div>
   </header>
@@ -893,8 +907,7 @@
     </button>
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="branches.html">Branches</a></li>
+        <li><a href="index.html">HOME</a></li>
         <li><a href="SIL.html">SIL</a></li>
       </ul>
     </nav>
@@ -910,7 +923,9 @@
     </div>
   </div>
 
-  <section class="docs-section">
+  <div class="main-content">
+
+     <section class="docs-section">
     <h2>Available Resources</h2>
     <div class="docs-container">
       <div class="no-results" id="resources-no-results">No resources found matching your search.</div>
@@ -937,42 +952,45 @@
     </div>
   </section>
 
-  <section class="docs-section">
-    <h2>KLU Portals</h2>
-    <div class="docs-container">
-      <div class="no-results" id="portals-no-results">No portals found matching your search.</div>
-      
-      <a href="https://newerp.kluniversity.in" target="_blank" class="doc-card">
-        <div class="doc-thumbnail">
-          <img src="https://raw.githubusercontent.com/Brahmendra06/sok/main/HOME/KLU ERP.jpg" alt="KLU ERP">
-        </div>
-        <div class="doc-info">
-          <h3 class="doc-title">KLU ERP</h3>
-          <div class="doc-meta"><span>Official</span><span>Portal</span></div>
-        </div>
-      </a>
-      
-      <a href="https://lms.kluniversity.in/my/" target="_blank" class="doc-card">
-        <div class="doc-thumbnail">
-          <img src="https://raw.githubusercontent.com/Brahmendra06/sok/main/HOME/KLU LMS.jpg" alt="KLU LMS">
-        </div>
-        <div class="doc-info">
-          <h3 class="doc-title">KLU LMS</h3>
-          <div class="doc-meta"><span>Services</span><span>Login</span></div>
-        </div>
-      </a>
-      
-      <a href="https://academics.klef.in/" target="_blank" class="doc-card">
-        <div class="doc-thumbnail">
-          <img src="https://raw.githubusercontent.com/Brahmendra06/sok/main/HOME/KLU ACCA.jpg" alt="KLU Academics">
-        </div>
-        <div class="doc-info">
-          <h3 class="doc-title">KLU ACADEMICS</h3>
-          <div class="doc-meta"><span>SIL</span><span>Portal</span></div>
-        </div>
-      </a>
-    </div>
-  </section>
+
+    <section class="docs-section">
+
+      <h2>KLU Portals</h2>
+      <div class="docs-container">
+        <div class="no-results" id="portals-no-results">No portals found matching your search.</div>
+        
+        <a href="https://newerp.kluniversity.in" target="_blank" class="doc-card">
+          <div class="doc-thumbnail">
+            <img src="https://raw.githubusercontent.com/Brahmendra06/sok/main/HOME/KLU ERP.jpg" alt="KLU ERP">
+          </div>
+          <div class="doc-info">
+            <h3 class="doc-title">KLU ERP</h3>
+            <div class="doc-meta"><span>Official</span><span>Portal</span></div>
+          </div>
+        </a>
+        
+        <a href="https://lms.kluniversity.in/my/" target="_blank" class="doc-card">
+          <div class="doc-thumbnail">
+            <img src="https://raw.githubusercontent.com/Brahmendra06/sok/main/HOME/KLU LMS.jpg" alt="KLU LMS">
+          </div>
+          <div class="doc-info">
+            <h3 class="doc-title">KLU LMS</h3>
+            <div class="doc-meta"><span>Services</span><span>Login</span></div>
+          </div>
+        </a>
+        
+        <a href="https://academics.klef.in/" target="_blank" class="doc-card">
+          <div class="doc-thumbnail">
+            <img src="https://raw.githubusercontent.com/Brahmendra06/sok/main/HOME/KLU ACCA.jpg" alt="KLU Academics">
+          </div>
+          <div class="doc-info">
+            <h3 class="doc-title">KLU ACADEMICS</h3>
+            <div class="doc-meta"><span>SIL</span><span>Portal</span></div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </div>
 
   <footer>
     <div class="footer-content">
@@ -1013,7 +1031,7 @@
       const docSections = document.querySelectorAll('.docs-section');
       let anyResultsFound = false;
 
-      // Show loading state
+      // Reset no results messages
       document.querySelectorAll('.no-results').forEach(el => {
         el.style.display = 'none';
       });
@@ -1038,14 +1056,14 @@
         const sectionHeading = section.querySelector('h2');
         if (sectionHasResults) {
           sectionHeading.style.display = 'block';
-          noResultsElement.style.display = 'none';
+          if (noResultsElement) noResultsElement.style.display = 'none';
         } else {
-          if (searchQuery.length > 0) {
+          if (searchQuery.length > 0 && noResultsElement) {
             noResultsElement.style.display = 'block';
-          } else {
+          } else if (noResultsElement) {
             noResultsElement.style.display = 'none';
           }
-          sectionHeading.style.display = sectionHasResults ? 'block' : 'none';
+          sectionHeading.style.display = searchQuery.length > 0 ? 'block' : 'block';
         }
       });
     }
@@ -1127,17 +1145,17 @@
       // Make sure content takes up at least the full viewport height minus the footer height
       function adjustMainContentHeight() {
         const footerHeight = document.querySelector('footer').offsetHeight;
-const headerHeight = document.querySelector('header').offsetHeight;
-          const windowHeight = window.innerHeight;
-          const mainContent = document.querySelector('.main-content');
-          const minHeight = windowHeight - footerHeight - headerHeight;
-          mainContent.style.minHeight = `${minHeight}px`;
-        }
-        
-        // Run on load and on resize
-        adjustMainContentHeight();
-        window.addEventListener('resize', adjustMainContentHeight);
-      });
-    </script>
-  </body>
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const windowHeight = window.innerHeight;
+        const mainContent = document.querySelector('.main-content');
+        const minHeight = windowHeight - footerHeight - headerHeight;
+        mainContent.style.minHeight = `${minHeight}px`;
+      }
+      
+      // Run on load and on resize
+      adjustMainContentHeight();
+      window.addEventListener('resize', adjustMainContentHeight);
+    });
+  </script>
+</body>
 </html>
